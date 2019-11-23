@@ -2,6 +2,9 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,74 +19,57 @@ import javax.swing.*;
 class Alumno extends JPanel{
     JFrame frame = new JFrame();
     JButton btnInicio = new JButton("Inicio");
-    JButton btnLeccion = new JButton("Leccion");
-    JButton btnPerfil = new JButton("Perfil");
+    JButton btnLeccion = new JButton("Lecciones");
+    JButton btnTutorial = new JButton("Tutorial");
     JButton btnConfiguracion = new JButton("Configuracion");
-    JButton btnGrupo = new JButton("Grupo");
+    JButton btnRecursos = new JButton("Recursos");
     JButton btnCerrar = new JButton("Cerrar Sesion");
-    JButton btnAgregar = new JButton("Agregar Alumno");
-    JButton btnAdministrar = new JButton("Administrar Calificacion");
-    JButton btnAceptar = new JButton("Aceptar");
     JButton btnCancelar = new JButton("Cancelar");
     JButton btnCacelar2 = new JButton("Cancelar");
     JButton btnRegresar = new JButton("Regresar");
-    JButton btnRemover = new JButton("Remover Alumno");
-    JButton btnActualizar = new JButton("Actualizar Alumno");
     JButton btnCorreo = new JButton("Actualizar Correo");
     JButton btnContraseña = new JButton("Actualizar contraseña");
     JButton btnActualizarCorreo = new JButton("Actualiar correo");
     JButton btnRegresar2 = new JButton("Regresar"); 
     JButton btnActualizarContra = new JButton("Actualizar contraseña");
     JButton btnRegresarContra = new JButton("Regresar");
+    JButton btnRompecabezas = new JButton("Rompecabezas");
+    JButton btnCuestionario = new JButton("Cuestionario");
+    JButton btnConceptos = new JButton("Union de Conceptos");
     
     JPanel contenedor = new JPanel();
     JPanel inicio = new JPanel();
     JPanel leccion = new JPanel();
     JPanel perfil = new JPanel();
     JPanel configuracion = new JPanel();
-    JPanel grupo = new JPanel();
+    JPanel pnlRecursos = new JPanel();
     JPanel fondo = new JPanel();
-    JPanel AgregarAlum = new JPanel();
-    JPanel AdminAlum = new JPanel();
-    JPanel RemoverAlum = new JPanel();
     JPanel actualizarCorreo = new JPanel();
     JPanel actualizarContra = new JPanel();
     
     CardLayout cal = new CardLayout();
     JLabel fotoP = new JLabel();
     JLabel inicioP = new JLabel();
-    JLabel grupoP = new JLabel();
+    JLabel lblRecursosA = new JLabel();
     JLabel AgregaP = new JLabel();
     JLabel AdminP = new JLabel();
     JLabel removerP = new JLabel();
     JLabel configuracionP = new JLabel();
     JLabel correoP = new JLabel();
     JLabel contraP = new JLabel();
-    JLabel perfilP = new JLabel();
+    JLabel lblTutorial = new JLabel();
     
     public Alumno(){
         //Imangen de foto de perfil
         fotoP.setIcon(new ImageIcon(".\\src\\image\\s.png"));
         fotoP.setBounds(100,0,150,100);
         //Imagen de inicio
-        inicioP.setIcon(new ImageIcon(".\\src\\image\\inicio.png"));
+        inicioP.setIcon(new ImageIcon(".\\src\\image\\inicioAlu.png"));
         inicioP.setBounds(0,0,500,200);
-        //Imagen de Agregar alumno
-        AgregaP.setIcon(new ImageIcon(".\\src\\image\\agregarAlumno.png"));
-        AgregaP.setBounds(200,50,765,336);
-        AgregarAlum.setLayout(null);
         //Imagen de Grupo
-        grupoP.setIcon(new ImageIcon(".\\src\\image\\adminGrupo.png"));
-        grupoP.setBounds(200,100,1080,200);
-        grupo.setLayout(null);
-        //imagen de Administrar calificacion
-        AdminP.setIcon(new ImageIcon(".\\src\\image\\AdminCal.png"));
-        AdminP.setBounds(70,50,926,485);
-        AdminAlum.setLayout(null);
-        //imagen de remover alumno
-        removerP.setIcon(new ImageIcon(".\\src\\image\\RemoverAlum.png"));
-        removerP.setBounds(40,50,1011,261);
-        RemoverAlum.setLayout(null);
+        lblRecursosA.setIcon(new ImageIcon(".\\src\\image\\recursos.png"));
+        lblRecursosA.setBounds(250,60,1080,380);
+        pnlRecursos.setLayout(null);
         
         configuracionP.setIcon(new ImageIcon(".\\src\\image\\configuracion.png"));
         configuracionP.setBounds(0,50,1011,261);
@@ -97,10 +83,11 @@ class Alumno extends JPanel{
         contraP.setBounds(100,80,865,300);
         actualizarContra.setLayout(null);
         
-        perfilP.setIcon(new ImageIcon(".\\src\\image\\perfil.png"));
-        perfilP.setBounds(0,0,1080,400);
+        lblTutorial.setIcon(new ImageIcon(".\\src\\image\\tutorial.png"));
+        lblTutorial.setBounds(250,65,1080,400);
         perfil.setLayout(null);
         
+        leccion.setLayout(null);
         
         fondo.setBackground(Color.WHITE);
         fondo.setLayout(null);
@@ -113,21 +100,19 @@ class Alumno extends JPanel{
         btnContraseña.setBackground(Color.GREEN);
         btnCorreo.setBackground(Color.GREEN);
         btnRegresar.setBackground(Color.GREEN);
-        btnActualizar.setBackground(Color.GRAY.darker());
         btnCacelar2.setBackground(Color.GRAY.darker());
-        btnRemover.setBackground(Color.GREEN);
-        btnAceptar.setBackground(Color.GRAY.darker());
         btnCancelar.setBackground(Color.GRAY.darker());
         btnInicio.setBackground(Color.GRAY.darker());
         btnLeccion.setBackground(Color.GRAY.darker());
-        btnPerfil.setBackground(Color.GRAY.darker());
+        btnTutorial.setBackground(Color.GRAY.darker());
         btnConfiguracion.setBackground(Color.GRAY.darker());
-        btnGrupo.setBackground(Color.GRAY.darker());
+        btnRecursos.setBackground(Color.GRAY.darker());
         btnCerrar.setBackground(Color.GRAY.darker());
-        btnAgregar.setBackground(Color.GREEN);
-        btnAdministrar.setBackground(Color.BLUE);
         btnRegresarContra.setBackground(Color.GREEN);
         btnActualizarContra.setBackground(Color.GREEN);
+        btnRompecabezas.setBackground(Color.RED);
+        btnCuestionario.setBackground(Color.BLUE);
+        btnConceptos.setBackground(Color.GREEN);
         
         //Color de letra de botones
         btnRegresarContra.setForeground(Color.WHITE);
@@ -137,19 +122,17 @@ class Alumno extends JPanel{
         btnCorreo.setForeground(Color.WHITE);
         btnContraseña.setForeground(Color.WHITE);
         btnRegresar.setForeground(Color.WHITE);
-        btnActualizar.setForeground(Color.WHITE);
         btnCacelar2.setForeground(Color.WHITE);
-        btnRemover.setForeground(Color.WHITE);
         btnInicio.setForeground(Color.WHITE);
         btnLeccion.setForeground(Color.WHITE);
-        btnPerfil.setForeground(Color.WHITE);
-        btnGrupo.setForeground(Color.WHITE);
+        btnTutorial.setForeground(Color.WHITE);
+        btnRecursos.setForeground(Color.WHITE);
         btnCerrar.setForeground(Color.WHITE);
         btnConfiguracion.setForeground(Color.WHITE);
-        btnAgregar.setForeground(Color.WHITE);
-        btnAdministrar.setForeground(Color.WHITE);
-        btnAceptar.setForeground(Color.WHITE);
         btnCancelar.setForeground(Color.WHITE);
+        btnRompecabezas.setForeground(Color.WHITE);
+        btnCuestionario.setForeground(Color.WHITE);
+        btnConceptos.setForeground(Color.WHITE);
        
         //Card Layout
         contenedor.setLayout(cal);
@@ -158,49 +141,31 @@ class Alumno extends JPanel{
         //Color de paneles
         actualizarContra.setBackground(Color.WHITE);
         actualizarCorreo.setBackground(Color.WHITE);
-        RemoverAlum.setBackground(Color.WHITE);
-        AdminAlum.setBackground(Color.WHITE);
-        AgregarAlum.setBackground(Color.WHITE);
         inicio.setBackground(Color.WHITE);
-        leccion.setBackground(Color.RED);
+        leccion.setBackground(Color.WHITE);
         perfil.setBackground(Color.WHITE);
         configuracion.setBackground(Color.WHITE);
-        grupo.setBackground(Color.WHITE);
+        pnlRecursos.setBackground(Color.WHITE);
         
 
         //Dimension de los paneles
         actualizarContra.setMaximumSize(new Dimension(500,200));
         actualizarCorreo.setMaximumSize(new Dimension(500,200));
-        RemoverAlum.setMaximumSize(new Dimension(500,200));
-        AdminAlum.setMaximumSize(new Dimension(500,200));
-        AgregarAlum.setMaximumSize(new Dimension(500,200));
         contenedor.setMaximumSize(new Dimension(500,200));
         inicio.setMaximumSize(new Dimension(500,200)); 
         perfil.setMaximumSize(new Dimension(500,200));
         configuracion.setMaximumSize(new Dimension(500,200));
-        grupo.setMaximumSize(new Dimension(500,200));
+        pnlRecursos.setMaximumSize(new Dimension(500,200));
         
         
-        
-        
-       // agregacion a panel del grupo
-       grupo.add(btnAgregar);
-       grupo.add(btnAdministrar);
-       grupo.add(btnRemover);
+       
        //Agregacion de inicio
        inicio.add(inicioP);
-       grupo.add(grupoP);
-       //Agregacion de alumno
-       AgregarAlum.add(btnCancelar);
-       AgregarAlum.add(btnAceptar);
-       AgregarAlum.add(AgregaP);
-       //Agregacion de administrar calificacion
-       AdminAlum.add(btnCacelar2);
-       AdminAlum.add(btnActualizar);
-       AdminAlum.add(AdminP);
-       //Agregacion de Remover alumno
-       RemoverAlum.add(removerP);
-       RemoverAlum.add(btnRegresar);
+       pnlRecursos.add(lblRecursosA);
+       //Agregacion de leccion
+       leccion.add(btnRompecabezas);
+       leccion.add(btnCuestionario);
+       leccion.add(btnConceptos);
        //Agregacion de configuracion
        configuracion.add(configuracionP);
        configuracion.add(btnCorreo);
@@ -214,13 +179,13 @@ class Alumno extends JPanel{
        actualizarContra.add(btnRegresarContra);
        actualizarContra.add(contraP);
        //agregacion de perfil
-       perfil.add(perfilP);
+       perfil.add(lblTutorial);
        //Agregacion de botones al fondo
        fondo.add(fotoP);
        fondo.add(btnInicio); 
        fondo.add(btnLeccion);
-       fondo.add(btnGrupo);
-       fondo.add(btnPerfil);
+       fondo.add(btnRecursos);
+       fondo.add(btnTutorial);
        fondo.add(btnConfiguracion);
        fondo.add(btnCerrar);
        //Agregacion al frame
@@ -236,29 +201,27 @@ class Alumno extends JPanel{
         btnCorreo.setBounds(500, 300, 150, 50);
         btnContraseña.setBounds(500,370,170,50);
         btnRegresar.setBounds(600,330, 100, 50);
-        btnActualizar.setBounds(580,400, 150, 50);
         btnCacelar2.setBounds(750,400, 100, 50);
-        btnRemover.setBounds(780,350,150,40);
-        btnAceptar.setBounds(450,330, 100, 50);
         btnCancelar.setBounds(600,330, 100, 50);
-        btnAgregar.setBounds(780,300,140,40);
-        btnAdministrar.setBounds(760,130,180,40);
         btnInicio.setBounds(480,20,80,50);
         btnLeccion.setBounds(560,20,80,50);
-        btnGrupo.setBounds(640,20,80,50);
-        btnPerfil.setBounds(720,20,80,50);
+        btnRecursos.setBounds(640,20,80,50);
+        btnTutorial.setBounds(720,20,80,50);
         btnConfiguracion.setBounds(800,20,120,50);
         btnCerrar.setBounds(920,20,150,50);
+        btnRompecabezas.setBounds(500, 150, 150, 50);
+        btnCuestionario.setBounds(500, 250, 150, 50);
+        btnConceptos.setBounds(500, 350, 150, 50);
         
         //Capas del Card
         contenedor.add(inicio,"1");
         contenedor.add(leccion,"2");
-        contenedor.add(grupo,"3");
+        contenedor.add(pnlRecursos,"3");
         contenedor.add(perfil,"4");
         contenedor.add(configuracion,"5");
-        contenedor.add(AgregarAlum,"6");
+        /*contenedor.add(AgregarAlum,"6");
         contenedor.add(AdminAlum,"7");
-        contenedor.add(RemoverAlum,"8");
+        contenedor.add(RemoverAlum,"8");*/
         contenedor.add(actualizarCorreo,"9");
         contenedor.add(actualizarContra,"10");
         
@@ -287,7 +250,7 @@ class Alumno extends JPanel{
             }
         });
              
-              btnPerfil.addActionListener(new ActionListener() {
+              btnTutorial.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cal.show(contenedor,"4");
@@ -301,7 +264,7 @@ class Alumno extends JPanel{
             }
         });
                
-                btnGrupo.addActionListener(new ActionListener() {
+                btnRecursos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cal.show(contenedor,"3");
@@ -316,21 +279,6 @@ class Alumno extends JPanel{
                 inicio.setVisible(true);
             }
         });
-                 
-            btnAgregar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cal.show(contenedor,"6");
-            }
-        });
-            
-             btnAceptar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Alumno agregado correctamente");
-                cal.show(contenedor,"3");
-            }
-        });
              
               btnCancelar.addActionListener(new ActionListener() {
             @Override
@@ -339,31 +287,10 @@ class Alumno extends JPanel{
             }
         });
               
-              btnAdministrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cal.show(contenedor,"7");
-            }
-        });
-              
             btnCacelar2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cal.show(contenedor,"3");
-            }
-        });
-                   
-            btnActualizar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Calificacion Actualizada Correctamente");
-                cal.show(contenedor,"3");
-            }
-        });
-           btnRemover.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cal.show(contenedor,"8");
             }
         });
               
@@ -415,6 +342,19 @@ class Alumno extends JPanel{
                 cal.show(contenedor,"5");
             }
         });
+                 btnRompecabezas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Abriendo Editor");
+                ProcessBuilder pb = new ProcessBuilder("java", "-jar", ".\\JigsawJars\\jigsawpuzzle.jar");
+                try {
+                    Process p = pb.start();
+                    System.out.println("Abriendo archivo jar");
+                } catch (IOException ex) {
+                    Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
               
     }
 
@@ -425,6 +365,7 @@ class Alumno extends JPanel{
                 new Alumno().setVisible(true);
             }
         });
+        
     }
 }
 
