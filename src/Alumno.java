@@ -204,11 +204,11 @@ class Alumno extends JPanel{
         btnCacelar2.setBounds(750,400, 100, 50);
         btnCancelar.setBounds(600,330, 100, 50);
         btnInicio.setBounds(480,20,80,50);
-        btnLeccion.setBounds(560,20,80,50);
-        btnRecursos.setBounds(640,20,80,50);
-        btnTutorial.setBounds(720,20,80,50);
-        btnConfiguracion.setBounds(800,20,120,50);
-        btnCerrar.setBounds(920,20,150,50);
+        btnLeccion.setBounds(560,20,100,50);
+        btnRecursos.setBounds(660,20,100,50);
+        btnTutorial.setBounds(750,20,80,50);
+        btnConfiguracion.setBounds(830,20,120,50);
+        btnCerrar.setBounds(950,20,120,50);
         btnRompecabezas.setBounds(500, 150, 150, 50);
         btnCuestionario.setBounds(500, 250, 150, 50);
         btnConceptos.setBounds(500, 350, 150, 50);
